@@ -7,23 +7,17 @@ using namespace std;
 
 struct Zelda{
 	int data;
-	std::string dir;
+	std::string dir; // Mas adelante se usara para obtener la distancia optima
 };
 
 
 int min(int x, int y, int z){
+
+	int min_1 = (x < y) ? x : y;
+
+	int min_2 = (z < min_1) ? z : min_1; 
 	
-	int min = x;
-	
-	if(y < min){
-		min = y;
-	}
-	
-	if(z < min){
-		min = z;
-	}
-	
-	return min;
+	return min_2;
 }
 
 
@@ -50,7 +44,7 @@ int dist_L(std::string w2, std::string w1){
 	//Recorrer fila i
 	for(int i = 1;i < w1.length()+1; i++){
 		
-		//Recorrer colimna j
+		//Recorrer columna j
 		for(int j = 1; j < w2.length()+1; j++){
 			
 			if(w1[i-1] == w2[j-1]){
@@ -58,19 +52,20 @@ int dist_L(std::string w2, std::string w1){
 			}else{
 				valor = 1;
 			}
+
+			// Establecemos los costos de las acciones
+			up   = matrix[i-1][j].data + 1; // Agregar letra
+			left = matrix[i][j-1].data + 1; // Borrar letra
+			diag = matrix[i-1][j-1].data + valor; // Mantener igual o reemplazar letra			
 			
-			up   = matrix[i-1][j].data + 1;
-			left = matrix[i][j-1].data + 1;
-			diag = matrix[i-1][j-1].data + valor;			
+			int val_min = min(up, left, diag);
+			matrix[i][j].data = val_min
 			
-			
-			matrix[i][j].data = min(up, left, diag);
-			
-			if(min(up, left, diag) == diag){
+			if(val_min == diag){
 				matrix[i][j].dir ="diag";
 			}else{
 				
-				if(min(up, left, diag) == up){
+				if(val_min == up){
 					matrix[i][j].dir ="up";
 				}else{
 					matrix[i][j].dir = "left";
@@ -115,6 +110,7 @@ for(int i = 1; i < w1.length()+1; i++){
 	
 	return matrix[w1.length()][w2.length()].data;
 }
+
 
 
 
