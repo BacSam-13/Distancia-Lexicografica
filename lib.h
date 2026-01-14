@@ -78,38 +78,35 @@ int dist_L(std::string w2, std::string w1){
 		
 	}
 	
-////////////////Para imprimir la matriz
-std::cout<<"\t\t";
-for(int j = 0; j < w2.length(); j++){
-	std:cout<<w2[j]<<"\t";
-}
-std::cout<<std::endl;
-
-std::cout<<"\t";
-
-std::cout<<matrix[0][0].data<<"\t";
-for(int j = 1; j < w2.length()+1; j++){
-	std::cout<<"["<<matrix[0][j].data<<"] ["<<matrix[0][j].dir<<"]\t";
-}
-std::cout<<std::endl;
-
-for(int i = 1; i < w1.length()+1; i++){
-	std::cout<<w1[i-1]<<"\t";
-	std::cout<<matrix[i][0].data<<"\t";
-	for(int j = 1; j < w2.length()+1; j++){
-		std::cout<<"["<<matrix[i][j].data<<"] ["<<matrix[i][j].dir<<"]\t";
+	////////////////Para imprimir la matriz
+	std::cout<<"\t\t";
+	for(int j = 0; j < w2.length(); j++){
+		std:cout<<w2[j]<<"\t";
 	}
 	std::cout<<std::endl;
-}
-	std::cout<<std::endl;
-///////////////
-
-
-////////////
-
 	
+	std::cout<<"\t";
+	
+	std::cout<<matrix[0][0].data<<"\t";
+	for(int j = 1; j < w2.length()+1; j++){
+		std::cout<<"["<<matrix[0][j].data<<"] ["<<matrix[0][j].dir<<"]\t";
+	}
+	std::cout<<std::endl;
+	
+	for(int i = 1; i < w1.length()+1; i++){
+		std::cout<<w1[i-1]<<"\t";
+		std::cout<<matrix[i][0].data<<"\t";
+		for(int j = 1; j < w2.length()+1; j++){
+			std::cout<<"["<<matrix[i][j].data<<"] ["<<matrix[i][j].dir<<"]\t";
+		}
+		std::cout<<std::endl;
+	}
+	std::cout<<std::endl;
+
+		
 	return matrix[w1.length()][w2.length()].data;
 }
+
 
 
 
